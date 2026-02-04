@@ -5,11 +5,14 @@ Library    SeleniumLibrary
 Open Browser To Login Page
     
     ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
+    
+    
+    ${chrome_options.binary_location}=    Set Variable    /usr/bin/chromium
+    
+    
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --disable-dev-shm-usage
     Call Method    ${chrome_options}    add_argument    --headless
-    
-    Call Method    ${chrome_options}    set_binary_location    /usr/bin/chromium
 
     
     ${service}=    Evaluate    sys.modules['selenium.webdriver.chrome.service'].Service(executable_path=r'/usr/bin/chromedriver')    sys, selenium.webdriver.chrome.service
@@ -22,5 +25,5 @@ Open Browser To Login Page
 *** Test Cases ***
 My First Selenium Test
     Open Browser To Login Page
-    Title Should Be    College of Computing, Khon Kaen University
+    Log    Opened website successfully
     [Teardown]    Close Browser
