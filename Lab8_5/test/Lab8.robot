@@ -3,13 +3,19 @@ Library    SeleniumLibrary
 
 *** Keywords ***
 Open Browser To Login Page
+    
     ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
     Call Method    ${chrome_options}    add_argument    --no-sandbox
     Call Method    ${chrome_options}    add_argument    --disable-dev-shm-usage
     Call Method    ${chrome_options}    add_argument    --headless
     
+    Call Method    ${chrome_options}    set_binary_location    /usr/bin/chromium
+
     
-    Create Webdriver    Chrome    options=${chrome_options}
+    ${service}=    Evaluate    sys.modules['selenium.webdriver.chrome.service'].Service(executable_path=r'/usr/bin/chromedriver')    sys, selenium.webdriver.chrome.service
+
+    
+    Create Webdriver    Chrome    options=${chrome_options}    service=${service}
     
     Go To    https://computing.kku.ac.th
 
