@@ -8,7 +8,9 @@ Open Browser To Login Page
     Call Method    ${chrome_options}    add_argument    --disable-dev-shm-usage
     Call Method    ${chrome_options}    add_argument    --headless
     
+    
     Create Webdriver    Chrome    options=${chrome_options}    executable_path=/usr/bin/chromedriver
+    
     Go To    https://computing.kku.ac.th
 
 *** Test Cases ***
