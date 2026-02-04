@@ -1,4 +1,4 @@
-﻿*** Settings ***
+*** Settings ***
 Library    SeleniumLibrary
 
 *** Keywords ***
@@ -10,3 +10,9 @@ Open Browser To Login Page
     
     Create Webdriver    Chrome    options=${chrome_options}
     Go To    https://computing.kku.ac.th
+
+*** Test Cases ***
+My First Selenium Test
+    Open Browser To Login Page
+    Title Should Be    College of Computing, Khon Kaen University
+    [Teardown]    Close Browser
